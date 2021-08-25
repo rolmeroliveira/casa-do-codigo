@@ -1,4 +1,4 @@
-package br.com.zup.casacodigo.criaautor;
+package br.com.repositorio.repo.criaautor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +20,11 @@ public class Autor {
     private String email;
     @Size(max = 400) private String descricao;
     private LocalDateTime momentoCriacao = LocalDateTime.now();
+
+    @Deprecated
+    public Autor(){
+
+    }
 
     public Autor(@NotBlank String nome,@NotBlank @Email String email, @Size(max = 400) String descricao) {
         this.nome = nome;

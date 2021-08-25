@@ -1,12 +1,8 @@
-package br.com.zup.casacodigo.criaautor;
-
-import br.com.zup.casacodigo.repo.AutorRepo;
+package br.com.repositorio.repo.criaautor;
+import br.com.repositorio.repo.repo.AutorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
@@ -15,6 +11,13 @@ public class AutoresController {
 
     @Autowired
     AutorRepo repo;
+    @Autowired
+    private ErroEmailRepetidoValidator erroEmailRepetidoValidator;
+
+    @InitBinder
+    public void initiBinder(WebDataBinder binder){
+        binder.addValidators(erroEmailRepetidoValidator);
+    }
 
     @PostMapping
     public String insere(@RequestBody @Valid NovoAutorReq novoAutorReq){
