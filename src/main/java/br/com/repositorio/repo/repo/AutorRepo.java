@@ -1,6 +1,6 @@
 package br.com.repositorio.repo.repo;
 
-import br.com.repositorio.repo.criaautor.Autor;
+import br.com.repositorio.repo.model.Autor;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

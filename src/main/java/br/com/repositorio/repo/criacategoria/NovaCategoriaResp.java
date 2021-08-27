@@ -5,15 +5,15 @@ import br.com.repositorio.repo.model.Categoria;
 
 import javax.validation.constraints.NotBlank;
 
-public class NovaCategoriaReq {
+public class NovaCategoriaResp {
     @NotBlank
     @UniqueValue(domainClass = Categoria.class, fieldName = "nome", message = "O valor deste campo não pode ser repetido")
     private String nome;
 
-    public NovaCategoriaReq() {
+    public NovaCategoriaResp() {
     }
 
-    public NovaCategoriaReq(String nome) {
+    public NovaCategoriaResp(String nome) {
         this.nome = nome;
     }
 

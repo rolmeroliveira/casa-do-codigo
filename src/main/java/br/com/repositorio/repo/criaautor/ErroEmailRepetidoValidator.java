@@ -1,5 +1,6 @@
 package br.com.repositorio.repo.criaautor;
 
+import br.com.repositorio.repo.model.Autor;
 import br.com.repositorio.repo.repo.AutorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

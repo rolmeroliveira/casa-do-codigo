@@ -1,5 +1,6 @@
 package br.com.repositorio.repo.criacategoria;
 
+import br.com.repositorio.repo.model.Categoria;
 import br.com.repositorio.repo.repo.CategoriaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,5 @@
 package br.com.repositorio.repo.criaautor;
+import br.com.repositorio.repo.model.Autor;
 import br.com.repositorio.repo.repo.AutorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
@@ -13,6 +14,8 @@ public class AutoresController {
     AutorRepo repo;
     @Autowired
     private ErroEmailRepetidoValidator erroEmailRepetidoValidator;
+
+
 
     @InitBinder
     public void initiBinder(WebDataBinder binder){

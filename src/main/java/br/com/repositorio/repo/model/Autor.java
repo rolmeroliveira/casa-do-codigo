@@ -1,4 +1,4 @@
-package br.com.repositorio.repo.criaautor;
+package br.com.repositorio.repo.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

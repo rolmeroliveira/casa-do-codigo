@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class NovoAutorReq {
+public class NovoAutorResp {
     @NotBlank
     private String nome;
     @NotBlank
@@ -16,7 +16,7 @@ public class NovoAutorReq {
     @NotBlank
     private String descricao;
 
-    public NovoAutorReq(@NotBlank String nome, @NotBlank @Email String email, @Size(max = 400) String descricao) {
+    public NovoAutorResp(@NotBlank String nome, @NotBlank @Email String email, @Size(max = 400) String descricao) {
         this.nome = nome;
         this.email = email;
         this.descricao = descricao;

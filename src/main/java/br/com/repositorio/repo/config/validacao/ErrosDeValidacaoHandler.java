@@ -20,7 +20,7 @@ public class ErrosDeValidacaoHandler {
     private MessageSource messageSource;
 
     @ResponseStatus(code= HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({MethodArgumentNotValidException.class, IllegalStateException.class})
     public List<ErrosDadosDto> handle (MethodArgumentNotValidException exception){
         List<ErrosDadosDto> dto = new ArrayList<>();
         List<FieldError> fe = exception.getBindingResult().getFieldErrors();
