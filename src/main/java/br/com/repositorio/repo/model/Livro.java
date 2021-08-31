@@ -39,6 +39,9 @@ public class Livro {
     @ManyToOne
     private Autor autor;
 
+    public Livro() {
+    }
+
     public Livro(String título, String resumo, String sumario, double preco, Integer numeroDePaginas,
                  String isbn, LocalDate dataDapublicacao, Categoria categoria, Autor autor) {
         this.título = título;

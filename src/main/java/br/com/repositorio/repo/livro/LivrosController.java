@@ -11,6 +11,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/livros")
@@ -29,5 +32,14 @@ public class LivrosController {
         LivroResp novoLivroResp = new LivroResp(livroSalvo);
         URI uri = ucb.path("livros/{id}").buildAndExpand(novoLivroResp.getId()).toUri();
         return ResponseEntity.created(uri).body(novoLivroResp);
+    }
+
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<List<LivroSimplificadoResp>> lista(UriComponentsBuilder ucb){
+        List<Livro> listaLivros = (List<Livro>) repo.findAll();
+        List<LivroSimplificadoResp> ListaSaida = listaLivros.stream().map(l -> new LivroSimplificadoResp(l)).collect(Collectors.toList());
+        URI uri = ucb.path("livros").buildAndExpand().toUri();
+        return ResponseEntity.created(uri).body(ListaSaida);
     }
 }
