@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -41,5 +42,17 @@ public class LivrosController {
         List<LivroSimplificadoResp> ListaSaida = listaLivros.stream().map(l -> new LivroSimplificadoResp(l)).collect(Collectors.toList());
         URI uri = ucb.path("livros").buildAndExpand().toUri();
         return ResponseEntity.created(uri).body(ListaSaida);
+    }
+
+    @GetMapping(path = {"/{id}"})
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<LivroResp> retornaUm(@PathVariable Long id, UriComponentsBuilder ucb){
+        Optional<Livro> livroEncontrado = repo.findById(id);
+        if(livroEncontrado.isPresent()){
+            LivroResp livroResp = new LivroResp(livroEncontrado.get());
+            URI uri = ucb.path("livros/{id}").buildAndExpand(livroResp.getId()).toUri();
+            return ResponseEntity.ok(livroResp);
+        }
+        return ResponseEntity.badRequest().build();
     }
 }
