@@ -1,4 +1,4 @@
-package br.com.repositorio.repo.criacategoria;
+package br.com.repositorio.repo.categoria;
 
 import br.com.repositorio.repo.model.Categoria;
 import br.com.repositorio.repo.repo.CategoriaRepo;
@@ -17,13 +17,13 @@ public class ErroNomeRepetidoCategoriaValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return NovaCategoriaReq.class.isAssignableFrom(clazz);
+        return CategoriaReq.class.isAssignableFrom(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
         if (errors.hasErrors()) return;
-        NovaCategoriaReq req = (NovaCategoriaReq)target;
+        CategoriaReq req = (CategoriaReq)target;
         Optional<Categoria> categoriaPossivel = repo.findFirstByNome(req.getNome());
         if(categoriaPossivel.isPresent()){
             errors.rejectValue("nome", null, "Já uma categoria com esse nome");

@@ -1,8 +1,5 @@
 package br.com.repositorio.repo.config.validacao;
 
-import com.sun.xml.bind.v2.schemagen.episode.Klass;
-import org.springframework.util.Assert;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -10,7 +7,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Object> {
+
+public class ValorExclusivoValidador implements ConstraintValidator<ValorExclusivo, Object> {
 
 
     private String domainAtribute;
@@ -20,7 +18,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
 
     @Override
-    public void initialize(UniqueValue uv) {
+    public void initialize(ValorExclusivo uv) {
         domainAtribute = uv.fieldName();
         klass = uv.domainClass();
     }

@@ -1,5 +1,7 @@
 package br.com.repositorio.repo.model;
 
+import br.com.repositorio.repo.config.validacao.ValorExclusivo;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +19,13 @@ public class Autor {
     @NotBlank
     private String nome;
     @NotBlank @Email
+    @ValorExclusivo(domainClass = Autor.class, fieldName = "email", message = "email precisa ser exclusivo")
     private String email;
-    @Size(max = 400) private String descricao;
+    @Size(max = 400)
+    private String descricao;
     private LocalDateTime momentoCriacao = LocalDateTime.now();
 
-    @Deprecated
-    public Autor(){
-
+    public Autor() {
     }
 
     public Autor(@NotBlank String nome,@NotBlank @Email String email, @Size(max = 400) String descricao) {
@@ -32,11 +34,27 @@ public class Autor {
         this.descricao = descricao;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
     @Override
     public String toString() {
         return "Autor -> " +
                 " Id:  " + id +
-                " Nome:  " + nome +
+                " | Nome:  " + nome +
                 " | E-mail: " + email +
                 " | Descricao: " + descricao +
                 " | Criado em: " + momentoCriacao;
