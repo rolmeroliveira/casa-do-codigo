@@ -1,6 +1,7 @@
 package br.com.repositorio.repo.config.validacao;
 
 
+import br.com.repositorio.repo.exception.EstadoObrigatorioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -43,4 +44,14 @@ public class RestExceptionHandler {
         return new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.toString(),
                 exception.getClass().toString());
     }
+
+    @ExceptionHandler(EstadoObrigatorioException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public StandardError handleHttpMessageNotReadableException(EstadoObrigatorioException exception) {
+        return new StandardError(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.toString(),
+                exception.getMessage());
+    }
+
+
+
 }

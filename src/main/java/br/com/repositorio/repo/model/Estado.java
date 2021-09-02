@@ -2,6 +2,7 @@ package br.com.repositorio.repo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Estado {
@@ -22,6 +23,13 @@ public class Estado {
         this.id = id;
         this.nome = nome;
         this.pais = pais;
+    }
+
+    public static Estado getInstanceById (Long id, EntityManager em){
+        Query query = em.createQuery("SELECT 1 FROM Estado  WHERE id = :pCriterioPais");
+        query.setParameter("pCriterioPais", id);
+        List<Estado> existentes = query.getResultList();
+        return existentes.get(0);
     }
 
     public Long getId() {
